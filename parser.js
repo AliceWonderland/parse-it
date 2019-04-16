@@ -1,3 +1,4 @@
+// parse jobs
 // parse a string input
 // output formatted str result
 
@@ -51,7 +52,6 @@ export default class Parser{
             obj[keys[3]] = item[4] + '-' + item[5];
             return obj;
         })
-        .join('\n');
     }
 
     createStr(input = null){
