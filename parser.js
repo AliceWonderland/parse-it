@@ -1,6 +1,7 @@
 // parse jobs
 // parse a string input
 // output formatted str result
+// Use Arrays
 
 export default class Parser{
     constructor(input,keys){
@@ -11,8 +12,8 @@ export default class Parser{
 
     // undefined, empty, \n, comma?
     check(){
-        var input = this.input;
-        var keys = this.keys;
+        let input = this.input;
+        let keys = this.keys;
         if(!input || !input.length || input.indexOf('\n') < 0 || input.indexOf(',') < 0 || !keys){
             return false;
         }
@@ -22,8 +23,8 @@ export default class Parser{
     }
 
     load(){
-        var input = this.input;
-        var result = [];
+        let input = this.input;
+        let result = [];
         if(this.check()){
             result = input.split('\n');
             result = result.map(item => item.split(',') );
@@ -43,9 +44,9 @@ export default class Parser{
 
     createObj(input = null){
         if(!input) return false;
-        var keys = this.keys;
+        let keys = this.keys;
         return input.map(item => {
-            var obj = {};
+            let obj = {};
             obj[keys[0]] = item[0];
             obj[keys[1]] = item[1];
             obj[keys[2]] = item[2] + ', ' + item[3];
@@ -56,9 +57,10 @@ export default class Parser{
 
     createStr(input = null){
         if(!input) return false;
-        var keys = this.keys;
-        return input.map(item => {
-            var str = '';
+        let keys = this.keys;
+        let header = "All Opportunities\n";
+        input = input.map(item => {
+            let str = '';
             str += `${keys[0]}: ${item[0]}, `;
             str += `${keys[1]}: ${item[1]}, `;
             str += `${keys[2]}: ${item[2]}, ${item[3]}, `;
@@ -66,5 +68,6 @@ export default class Parser{
             return str;
         })
         .join('\n');
+        return header += input;
     }
 }
